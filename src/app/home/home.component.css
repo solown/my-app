@@ -1,0 +1,125 @@
+.row {
+    height : 100vh;
+}
+
+.left_part {
+height : 100%;
+background-color: #ADD8E6;
+}
+
+.right_part {
+text-align: left;
+font-family: "Fjalla One";
+color: #707070;
+font-size: 1.5vw;
+height : 100%;
+width: 80%;
+}
+
+.home-btn {
+margin: 5%;
+display: inline-block;
+position: absolute;
+font-family: "Fjalla One";
+font-size: 1.5vw;
+}
+.home-btn2 {
+    margin: 5%;
+    margin-top:10%;
+    display: inline-block;
+    position: absolute;
+    font-family: "Fjalla One";
+    font-size: 1.5vw;
+}
+
+
+.family {
+width: 70%;
+height: auto;
+}
+
+.title_logo {
+margin-bottom: 5vh;
+text-align: center;
+}
+
+.formulaire {
+margin-top : 20%
+}
+.etu2 {
+font-size: 0.8vw;
+    width: 52%;
+    text-align: left;
+}
+
+.space_top {
+margin-top: 2vh;
+margin-bottom: -1vh;
+}
+
+input {
+border: solid 1px #707070;
+height: 2em;
+font-size: 1vw;
+}
+
+input[type="button"] {
+margin-top: 3vh;
+width: 100%;
+text-align: center;
+vertical-align: middle;
+background-color: #4169E1;
+font-family: "Fjalla One";
+border: none;
+font-size: 1.7vw;
+color: white;
+}
+
+span {
+margin-left: 1.5vw;
+}
+
+footer {
+height : 100%;
+width : 100%;
+display : block;
+  background-color: DarkSalmon;
+color : white;
+font-family : "Fjalla One";
+padding : 1%;
+}
+.info {
+margin-top : auto;
+font-size : 1.5vw;
+text-align : center;
+}
+.today{
+font-family: "Fjalla One";
+    font-size: 1.2vw;
+height : 25%;
+}
+
+.helpimage{
+width : 100%;
+height :100%;
+float : left;
+position : absolute;
+}
+.helptext {
+margin-top : 30%;
+padding-left : 5%;
+}
+a {
+text-decoration: none;
+text-align: right;
+}
+.left_part2 {
+font-family: "Fjalla One";
+background-color: #F5F7FA;
+text-align: center;
+}
+
+label{
+    font-family: "Fjalla One";
+    color : #707070;
+}
