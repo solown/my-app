@@ -11,7 +11,7 @@ import { JSONPlaceholderService } from '../services/jsonplaceholder.service';
 export class HomeComponent implements OnInit {
   constructor(private JSONPlaceholder:JSONPlaceholderService){}
   getDataFromApi(){
-    this.JSONPlaceholder.getData().subscribe((data) => {
+    this.JSONPlaceholder.getData(null, null, null).subscribe((data) => {
       console.log(data)
     })
   }

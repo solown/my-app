@@ -8,7 +8,10 @@ import { Observable } from 'rxjs';
 export class JSONPlaceholderService {
 
   constructor(private http: HttpClient) { }
-  getData():Observable<any>{
+  getData(sexe: number, anneeDebut: string, anneeFin: string):Observable<any>{
+    if (anneeFin==null){
+      anneeFin = "2020"
+    } 
     const url="https://data.rennesmetropole.fr/api/records/1.0/search//?dataset=naissances-a-rennes";
     return this.http.get<any>(url);
   }
