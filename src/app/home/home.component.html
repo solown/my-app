@@ -321,10 +321,9 @@
           </div>
           <div>
             <!-- Bouton pour la requête vers l'API --> 
-            <input type="button" id="formSub" value="Météo" onclick="submit()"/>
+            <input type="button" id="formSub" value="Météo" (click)="getDataFromApi()"/>
           </div>
         </div>
-        <button (click)="getDataFromApi()">Get Data</button>
       </div>
     </div>
   </div>
