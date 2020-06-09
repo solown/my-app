@@ -18,16 +18,13 @@ interface Course {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  courses$: Observable<Course[]>;
+  courses$: Observable< Course[] >;
   constructor(private http:HttpClient) {
     }
 
   LineChart = [];
   ngOnInit(){
-    this.courses$ = this.http
-        .get<Course[]("/courses.json")
-        .map(data => _.values(data))
-        .do(console.log);
+    this.courses$ = this.http.get<Course[]("/courses.json").map(data => _.values(data)).do(console.log);
     //Line chart
     this.LineChart = new Chart('lineChart', {
       type:'line', 
