@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
     for (i = debutAnnee; i < finAnnee; i++){
       strAnnee = i.toString()
       this.JSONPlaceholder.getData(null, strAnnee).subscribe((data) => {
+        
         birth_boy.push(data['records'][0]["fields"]["garcons"]);
         birth_girl.push(data['records'][0]["fields"]["filles"])
       })
@@ -103,6 +104,16 @@ export class HomeComponent implements OnInit {
             display: true,
             tick:{
               beginAtZero : false
+              /*    
+              https://www.chartjs.org/docs/latest/developers/updates.html
+              var hi = data.datasets[3].data[0];
+              var lo = data.datasets[1].data[data.datasets[1].data.length - 1];
+                              ticks: {
+                                  max: hi,
+                                  min: lo,
+                                  stepSize: 10
+                                  }*/
+                            
             }
           }]
         }
