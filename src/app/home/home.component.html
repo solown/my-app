@@ -310,12 +310,11 @@
           <div>
             <!-- Zone de type input pour rentrer la ville. Propriétés onblur JS - Action lors de la sortie du champ-->
             <div class="space_top"><label>Veuillez entrer l'année de naissance :</label></div>
-            <input type="ville" name="ville" onblur="checkForm(this)"/><br>
+            <npn-slider [min]="1980" [max]="2020" (onChange)="onSliderChange($event)" [step]="1" [showStepIndicator]="true"></npn-slider>
           </div>
           <div>
-
             <!-- Bouton pour la géolocalisation - Utilisation de href pour le formatage du style et désactivation de sa propriété de redirection. Activation via la fonction onclick -->
-            <div class="etu2">
+            <div class="etu2 checkboxes">
             <!--<a href="javascript:void(0)" onclick="getGeoloc()">Trouver votre localisation ?</a>-->
               <div class="inline etu2"><input type="checkbox" id="keeplog">
                 <label for="keeplog"><span>Garçons</span></label>
@@ -323,14 +322,11 @@
               <div class="inline2 etu2"><input type="checkbox" id="keeplog2">
                 <label for="keeplog2"><span>Filles</span></label>
               </div>
-              <div class="inline3 etu2"><input type="checkbox" id="keeplog3">
-                <label for="keeplog3"><span>Indéterminés</span></label>
-              </div>
             </div>
           </div>
           <div>
             <!-- Bouton pour la requête vers l'API --> 
-            <input type="button" id="formSub" value="Météo" (click)="getDataFromApi()"/>
+            <input type="button" id="formSub" value="Stats !" (click)="getDataFromApi()"/>
           </div>
         </div>
       </div>
@@ -338,14 +334,10 @@
   </div>
   <div class="col-7 content" role="main">
     <div class="right_part">
-      <canvas id="lineChart"></canvas>
-      <router-outlet></router-outlet>
+      <div *ngIf="LineChart">
+        <canvas id="canvas">{{ LineChart }} </canvas>
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>
-
-
-
-<!--    <div class="inline etu2"><input type="checkbox" id="keeplog">
-                                            <label for="keeplog"><span>Keep me loged in</span></label>
-                                        </div>-->

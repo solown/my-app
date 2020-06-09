@@ -124,7 +124,6 @@ label{
     color : #707070;
 }
 
-
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
     position: absolute;
@@ -153,3 +152,4 @@ input[type="checkbox"]:checked+label::before {
     /* affiche un curseur adapté */
     margin-right: 15%;
 }
+
