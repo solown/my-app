@@ -309,14 +309,23 @@
         <div class="simpleform">
           <div>
             <!-- Zone de type input pour rentrer la ville. Propriétés onblur JS - Action lors de la sortie du champ-->
-            <div class="space_top"><label>Ville</label></div>
+            <div class="space_top"><label>Veuillez entrer l'année de naissance :</label></div>
             <input type="ville" name="ville" onblur="checkForm(this)"/><br>
           </div>
           <div>
 
             <!-- Bouton pour la géolocalisation - Utilisation de href pour le formatage du style et désactivation de sa propriété de redirection. Activation via la fonction onclick -->
             <div class="etu2">
-            <a href="javascript:void(0)" onclick="getGeoloc()">Trouver votre localisation ?</a>
+            <!--<a href="javascript:void(0)" onclick="getGeoloc()">Trouver votre localisation ?</a>-->
+              <div class="inline etu2"><input type="checkbox" id="keeplog">
+                <label for="keeplog"><span>Garçons</span></label>
+              </div>
+              <div class="inline2 etu2"><input type="checkbox" id="keeplog2">
+                <label for="keeplog2"><span>Filles</span></label>
+              </div>
+              <div class="inline3 etu2"><input type="checkbox" id="keeplog3">
+                <label for="keeplog3"><span>Indéterminés</span></label>
+              </div>
             </div>
           </div>
           <div>
@@ -334,3 +343,9 @@
     </div>
   </div>
 </div>
+
+
+
+<!--    <div class="inline etu2"><input type="checkbox" id="keeplog">
+                                            <label for="keeplog"><span>Keep me loged in</span></label>
+                                        </div>-->
