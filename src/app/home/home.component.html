@@ -309,8 +309,8 @@
         <div class="simpleform">
           <div>
             <!-- Zone de type input pour rentrer la ville. Propriétés onblur JS - Action lors de la sortie du champ-->
-            <div class="space_top"><label>Veuillez entrer l'année de naissance :</label></div>
-            <npn-slider [min]="1980" [max]="2020" (onChange)="onSliderChange($event)" [step]="1" [showStepIndicator]="true"></npn-slider>
+            <div class="space_top"><label>Veuillez choisir l'année de naissance :</label></div>
+            <npn-slider [min]="1986" [max]="2020" (onChange)="onSliderChange($event)" [step]="1" [showStepIndicator]="true"></npn-slider>
           </div>
           <div>
             <!-- Bouton pour la géolocalisation - Utilisation de href pour le formatage du style et désactivation de sa propriété de redirection. Activation via la fonction onclick -->

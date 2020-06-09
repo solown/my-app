@@ -14,7 +14,7 @@ export class JSONPlaceholderService {
     if (annee != null){
       param = param + "&refine.annee="+annee
     }
-    const baseUrl="https://data.rennesmetropole.fr/api/records/1.0/search//?dataset=naissances-a-rennes&lang=fr&rows=40&";
+    const baseUrl="https://data.rennesmetropole.fr/api/records/1.0/search//?dataset=naissances-a-rennes&lang=fr&rows=50&";
     return this.http.get<any>(baseUrl+param);
   }
 }

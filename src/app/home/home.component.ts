@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     var debutAnnee = this._currentYears[0];
     var finAnnee = this._currentYears[1];
     console.log(debutAnnee);
+    console.log(finAnnee);
     var i;
     for (i = debutAnnee; i < finAnnee; i++){
       strAnnee = i.toString()
