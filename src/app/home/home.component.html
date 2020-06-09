@@ -289,63 +289,54 @@
         visibility: hidden;
       }
     }
-  </style>
-  <head>
-  <!-- Inclusion police spécifique : Fjalla One -->
-  <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
-  </head>
-  <!-- Toolbar -->
-  <!--<div class="toolbar" role="banner">
-    <img
-      width="40"
-      alt="Angular Logo"
-      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-    />
-    <span>Site des naissances de rennes </span>
-      <div class="spacer">
-        <button routerLink="/contact">Nav to Contact</button>
-        <button routerLink="/help">Nav to Help</button>
+</style>
+<head>
+<!-- Inclusion police spécifique : Fjalla One -->
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+</head>
+<div class ="row">
+  <div class = "col-5 left_part">
+    <div class="spacer">
+      <a routerLink="/contact" class="home-btn"> > Contact</a>
+      <a routerLink="/help" class="home-btn2"> > Help</a>
+    </div>
+    <div class="col-6 offset-3 formulaire">
+      <div>
+        <img src="../assets/img/family.png" class="family"/>
       </div>
-      
-  </div> -->
-  
-  <div class ="row">
-    <div class = "col-5 left_part">
-      <div class="spacer">
-        <a routerLink="/contact" class="home-btn"> > Contact</a>
-        <a routerLink="/help" class="home-btn2"> > Help</a>
-      </div>
-      <div class="col-6 offset-3 formulaire">
-        <div>
-          <img src="../assets/img/family.png" class="family"/>
-        </div>
-        <div>
-          <!-- Formulaire -->
-          <div class="simpleform">
-            <div>
-              <!-- Zone de type input pour rentrer la ville. Propriétés onblur JS - Action lors de la sortie du champ-->
-              <div class="space_top"><label>Ville</label></div>
-              <input type="ville" name="ville" onblur="checkForm(this)"/><br>
-            </div>
-            <div>
-  
-              <!-- Bouton pour la géolocalisation - Utilisation de href pour le formatage du style et désactivation de sa propriété de redirection. Activation via la fonction onclick -->
-              <div class="etu2">
-              <a href="javascript:void(0)" onclick="getGeoloc()">Trouver votre localisation ?</a>
-              </div>
-            </div>
-            <div>
-              <!-- Bouton pour la requête vers l'API --> 
-              <input type="button" id="formSub" value="Météo" onclick="submit()"/>
+      <div>
+        <!-- Formulaire -->
+        <div class="simpleform">
+          <div>
+            <!-- Zone de type input pour rentrer la ville. Propriétés onblur JS - Action lors de la sortie du champ-->
+            <div class="space_top"><label>Ville</label></div>
+            <input type="ville" name="ville" onblur="checkForm(this)"/><br>
+          </div>
+          <div>
+
+            <!-- Bouton pour la géolocalisation - Utilisation de href pour le formatage du style et désactivation de sa propriété de redirection. Activation via la fonction onclick -->
+            <div class="etu2">
+            <a href="javascript:void(0)" onclick="getGeoloc()">Trouver votre localisation ?</a>
             </div>
           </div>
+          <div>
+            <!-- Bouton pour la requête vers l'API --> 
+            <input type="button" id="formSub" value="Météo" onclick="submit()"/>
+          </div>
+          <ul *ngIf="courses$ | async as courses else noData">
+            <li *ngFor="let course of courses">
+                {{course.description}}
+            </li> 
+        </ul>
+        <ng-template #noData>No Data Available</ng-template>
         </div>
-      </div>
-    </div>
-    <div class="col-7 content" role="main">
-      <div class="right_part">
-        <canvas id="lineChart"></canvas>
-        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
+  <div class="col-7 content" role="main">
+    <div class="right_part">
+      <canvas id="lineChart"></canvas>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
