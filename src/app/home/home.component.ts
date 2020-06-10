@@ -24,22 +24,21 @@ export class HomeComponent implements OnInit {
     console.log(this._currentYears[0])
     console.log(this._currentYears[1])
     if (this._currentYears[0]==this._currentYears[1]){
-      let birth = [];      
+      let birth = [];
       strAnnee = this._currentYears[0].toString()
       this.JSONPlaceholder.getData(null, strAnnee).subscribe((data) => {
         birth.push(data['records'][0]["fields"]["garcons"]);
         birth.push(data['records'][0]["fields"]["filles"]);
-        console.log(birth);
+        if (this.LineChart !== null){
+          this.LineChart.destroy();
+          this.displayPieChart(birth[0],birth[1], this._currentYears[0]);
+        }
+        else{
+          console.log("Goes here else");
+          this.displayPieChart(birth[0],birth[1], this._currentYears[0]);
+        }
       })
-      if (this.LineChart !== null){
-        console.log(birth);
-        this.LineChart.destroy();
-        this.displayPieChart(birth[0],birth[1], this._currentYears[0]);
-      }
-      else{
-        console.log("Goes here else");
-        this.displayPieChart(birth[0],birth[1], this._currentYears[0]);
-      }
+      
     }
     else{
       let year = [];
@@ -113,7 +112,7 @@ export class HomeComponent implements OnInit {
       type : 'line',
       data: {
         labels: year,
-        datasets: content
+        datasets: content,
       },
       options: {
         legend: {
@@ -141,7 +140,11 @@ export class HomeComponent implements OnInit {
       type: 'pie',
 			data: {
 				datasets: [{
-					data: [birth_boy, birth_girl],
+          data: [birth_boy, birth_girl],
+          backgroundColor : [
+            'rgb(255, 60, 55,0)',
+            'rgba(105, 0, 255,0)'
+          ],
 					label: 'Dataset 1'
 				}],
 				labels: [
