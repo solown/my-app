@@ -295,6 +295,7 @@
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 </head>
 <div class ="row">
+  <!-- Division bootstrap gauche pour acceuillir le formulaire-->
   <div class = "col-5 left_part">
     <div class="spacer">
       <a routerLink="/contact" class="home-btn"> > Contact</a>
@@ -308,14 +309,13 @@
         <!-- Formulaire -->
         <div class="simpleform">
           <div>
-            <!-- Zone de type input pour rentrer la ville. Propriétés onblur JS - Action lors de la sortie du champ-->
+            <!-- Zone de type slider pour sélectionner l'intervalle à d'année à rechercher. Propriétés onChanger - Action lors de la modification de la bar-->
             <div class="space_top"><label>Veuillez choisir l'année de naissance :</label></div>
             <npn-slider [min]="1986" [max]="2020" (onChange)="onSliderChange($event)" [step]="1" [showStepIndicator]="true"></npn-slider>
           </div>
           <div>
-            <!-- Bouton pour la géolocalisation - Utilisation de href pour le formatage du style et désactivation de sa propriété de redirection. Activation via la fonction onclick -->
+            <!-- Div pour contenir les checkboxes-->
             <div class="etu2 checkboxes">
-            <!--<a href="javascript:void(0)" onclick="getGeoloc()">Trouver votre localisation ?</a>-->
               <div class="inline etu2"><input type="checkbox" id="keeplog">
                 <label for="keeplog"><span>Garçons</span></label>
               </div>
@@ -332,9 +332,11 @@
       </div>
     </div>
   </div>
+  <!-- Propriétés bootstrap pour diviser l'écran -->
   <div class="col-7 content" role="main">
     <div class="right_part">
       <div>
+        <!-- Inclusion du graphique via le canvas et la propriétés avec le LineChart -->
         <canvas id="canvas">{{ LineChart }} </canvas>
         <router-outlet></router-outlet>
       </div>

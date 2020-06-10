@@ -1,45 +1,49 @@
 import { Component, OnInit } from '@angular/core';
+/* Import du module Chart.js pour la création de rapports */
 import {Chart} from 'chart.js';
+/* Import du module contenant le client HTTP vers l'API */
 import { JSONPlaceholderService } from '../services/jsonplaceholder.service';
-// CardsFreeModule
-import { tick } from '@angular/core/testing';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
-
+/* Ajout du styles et du code html lié au Component */
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  /* Variable global pour la gestion des éléments propres aux html*/
   _currentYears = [];
   myModel : any;
   LineChart = null;
+  /* Création de l'objet JSONPlaceholder pour réaliser la requête */
   constructor(private JSONPlaceholder:JSONPlaceholderService){}
 
   ngOnInit(){ }
 
-
+  
   getDataFromApi(){
-    console.log(this._currentYears[0])
-    console.log(this._currentYears[1])
+  /**
+   * Récupère les éléments nécessaires liés à l'API et fait appel aux fonctions d'affichage des graphes
+  */
+    // Si les deux années de la Slide bar sont égales, on affiche un camembert pour la répartition filles, garçons
     if (this._currentYears[0]==this._currentYears[1]){
       let birth = [];
       strAnnee = this._currentYears[0].toString()
+      // Appel API - Méthode subscribe pour attendre la réception des données avant appel du Graĥ
       this.JSONPlaceholder.getData(null, strAnnee).subscribe((data) => {
         birth.push(data['records'][0]["fields"]["garcons"]);
         birth.push(data['records'][0]["fields"]["filles"]);
         if (this.LineChart !== null){
+          //Si un graphique existe déjà on le supprime avant de le recréer
           this.LineChart.destroy();
           this.displayPieChart(birth[0],birth[1], this._currentYears[0]);
         }
         else{
-          console.log("Goes here else");
           this.displayPieChart(birth[0],birth[1], this._currentYears[0]);
         }
       })
       
-    }
+    }//Sinon on affiche l'évolution des naissances par années
     else{
       let year = [];
       let birth_boy = [];
@@ -68,11 +72,16 @@ export class HomeComponent implements OnInit {
     
   }
 
-
+  /**
+   * Affiche un graphique linéaire (Line Chart) avec les données passés en paramètres
+   * @param birth_boy 
+   * @param birth_girl 
+   * @param year 
+   */
   displayCharts(birth_boy : number[], birth_girl : number[], year : number[]){
     var content;
     var valueCb = this.checkBoxContent();
-    console.log(valueCb);
+    // Prépare les valeurs pour les filles, les garçons ou les deux, en fonction des checkboxes
     switch (valueCb) {
       case 0:
         content = [{
@@ -108,6 +117,7 @@ export class HomeComponent implements OnInit {
       default:
         break;
     }
+    // Création du graph dans la variable LineChart - Intégration de la partie contente initialisé dans le switch
     this.LineChart = new Chart('canvas',{
       type : 'line',
       data: {
@@ -134,8 +144,14 @@ export class HomeComponent implements OnInit {
       }
     })
   }
+  /**
+   * Affiche un camembert statistique (pie chart)
+   * @param birth_boy 
+   * @param birth_girl 
+   * @param year 
+   */
   displayPieChart(birth_boy : number[],birth_girl : number[],  year : number){
-    console.log(birth_girl, birth_boy),
+    this.uncheckBoxes();
     this.LineChart = new Chart('canvas',{
       type: 'pie',
 			data: {
@@ -160,7 +176,9 @@ export class HomeComponent implements OnInit {
         }}
     })
   }
-  
+/**
+ * Retourne la valeur des checkbox afin de déterminer lesquelles sont cochées.
+ */
 checkBoxContent(){
   let checkBoxBoys = (<HTMLInputElement>document.getElementById("keeplog")).checked;
   let checkBoxGirls = (<HTMLInputElement>document.getElementById("keeplog2")).checked;
@@ -173,8 +191,16 @@ checkBoxContent(){
   return 0;
   }
 
-onSliderChange(selectedValues: number[]) {
-    this._currentYears = selectedValues;
-}
-  
+  /**
+   * Met à jour la valeur de la slide bar dans la variable _currentYears
+   * @param selectedValues 
+   */
+  onSliderChange(selectedValues: number[]) {
+      this._currentYears = selectedValues;
+  }
+
+  uncheckBoxes(){
+    (<HTMLInputElement>document.getElementById("keeplog")).checked = false;
+    (<HTMLInputElement>document.getElementById("keeplog2")).checked = false;
+  }
 }

@@ -79,15 +79,6 @@ span {
 margin-left: 1.5vw;
 }
 
-footer {
-height : 100%;
-width : 100%;
-display : block;
-  background-color: DarkSalmon;
-color : white;
-font-family : "Fjalla One";
-padding : 1%;
-}
 .info {
 margin-top : auto;
 font-size : 1.5vw;
