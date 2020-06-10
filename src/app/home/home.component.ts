@@ -24,22 +24,21 @@ export class HomeComponent implements OnInit {
     console.log(this._currentYears[0])
     console.log(this._currentYears[1])
     if (this._currentYears[0]==this._currentYears[1]){
-      let birth_boy = 0;
-      let birth_girl = 0;
+      let birth = [];      
       strAnnee = this._currentYears[0].toString()
       this.JSONPlaceholder.getData(null, strAnnee).subscribe((data) => {
-        
-        birth_boy = data['records'][0]["fields"]["garcons"];
-        birth_girl = data['records'][0]["fields"]["filles"];
+        birth.push(data['records'][0]["fields"]["garcons"]);
+        birth.push(data['records'][0]["fields"]["filles"]);
+        console.log(birth);
       })
       if (this.LineChart !== null){
-        console.log("Goes here");
+        console.log(birth);
         this.LineChart.destroy();
-        this.displayPieChart(birth_boy,birth_girl, this._currentYears[0]);
+        this.displayPieChart(birth[0],birth[1], this._currentYears[0]);
       }
       else{
         console.log("Goes here else");
-        this.displayPieChart(birth_boy,birth_girl, this._currentYears[0]);
+        this.displayPieChart(birth[0],birth[1], this._currentYears[0]);
       }
     }
     else{
@@ -136,35 +135,27 @@ export class HomeComponent implements OnInit {
       }
     })
   }
-  displayPieChart(birth_boy : number,birth_girl : number,  year : number){
+  displayPieChart(birth_boy : number[],birth_girl : number[],  year : number){
+    console.log(birth_girl, birth_boy),
     this.LineChart = new Chart('canvas',{
-      type : 'pie',
-      data: {
-        labels: ["Naissance garçons en " +year, "Naissance filles en " + year],
-        datasets : [{
-         /* data: [120,80],
-          backgroundColor : [
-            'rgb(255, 60, 55,0)',
-            'rgba(105, 0, 255,0)'
-          ]*/
-            label : "Naissance filles depuis "+this._currentYears[0].toString() + " à " + this._currentYears[1].toString(),
-            data:birth_girl,
-            borderColor: '#ffcc00',
-        },
-        {
-          label : "Naissance garcons depuis "+ this._currentYears[0].toString() + " à " + this._currentYears[1].toString(),
-          data: birth_boy,
-          borderColor: '#3cba9f',
-        }
-      ]
-      },
-      options: {
+      type: 'pie',
+			data: {
+				datasets: [{
+					data: [birth_boy, birth_girl],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'Red',
+					'Orange',
+				]
+			},
+			options: {
+        responsive : true,
         legend: {
-          text: "Pie Chart",
+          text: "Line Chart",
           display: true,
           maintainAspectRatio: false
-        }
-      }
+        }}
     })
   }
   
