@@ -141,15 +141,14 @@ export class HomeComponent implements OnInit {
 			data: {
 				datasets: [{
           data: [birth_boy, birth_girl],
-          backgroundColor : [
-            'rgb(255, 60, 55,0)',
-            'rgba(105, 0, 255,0)'
-          ],
+          backgroundColor: [
+            "#3cba9f",
+            "#ffcc00"],
 					label: 'Dataset 1'
 				}],
 				labels: [
-					'Red',
-					'Orange',
+					'Nombres de filles nées en '+year,
+					'Nombres de garcons nés en '+year,
 				]
 			},
 			options: {
