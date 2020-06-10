@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     if (this._currentYears[0]==this._currentYears[1]){
       let birth = [];
       strAnnee = this._currentYears[0].toString()
-      // Appel API - Méthode subscribe pour attendre la réception des données avant appel du Graĥ
+      // Appel API - Méthode subscribe pour attendre la réception des données avant appel du grapĥique
       this.JSONPlaceholder.getData(null, strAnnee).subscribe((data) => {
         birth.push(data['records'][0]["fields"]["garcons"]);
         birth.push(data['records'][0]["fields"]["filles"]);
@@ -125,6 +125,7 @@ export class HomeComponent implements OnInit {
         datasets: content,
       },
       options: {
+        responsive : true,
         legend: {
           text: "Line Chart",
           display: true,
